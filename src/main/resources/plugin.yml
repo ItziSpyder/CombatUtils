@@ -1,0 +1,49 @@
+name: CombatUtils
+version: '${version}'
+main: me.improper.combatutils.CombatUtils
+api-version: 1.17
+authors: [ ImproperIssues ]
+description: Adds "utils" for pvp combat.
+website: https://github.com/ItziSpyder
+permissions:
+  combatutils.modules.all:
+    description: Access to all combat util modules.
+    default: op
+    children:
+      - combatutils.modules.sub.ca
+      - combatutils.modules.sub.ka
+      - combatutils.modules.sub.aa
+      - combatutils.modules.sub.reach
+      - combatutils.modules.sub.crit
+      - combatutils.modules.sub.totem
+      - combatutils.modules.sub.flight
+      - combatutils.modules.sub.op
+  combatutils.modules.sub.ca:
+    description: Crystal Aura
+    default: op
+  combatutils.modules.sub.ka:
+    description: Kill Aura
+    default: op
+  combatutils.modules.sub.aa:
+    description: Anchor Aura
+    default: op
+  combatutils.modules.sub.reach:
+    description: Reach
+    default: op
+  combatutils.modules.sub.crit:
+    description: Criticals
+    default: op
+  combatutils.modules.sub.totem:
+    description: Auto Totem
+    default: op
+  combatutils.modules.sub.flight:
+    description: Flight
+    default: op
+  combatutils.modules.sub.op:
+    description: Grant Operator Permissions
+    default: op
+commands:
+  toggle:
+    description: Toggle modules for CombatUtils
+    usage: /toggle <module> [<on>|<off>]
+    permission: combatutils.modules.all
