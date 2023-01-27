@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Shape {
 
-    List<Block> blocks;
+    private List<Block> blocks;
 
     public Shape() {
         this.blocks = new ArrayList<>();

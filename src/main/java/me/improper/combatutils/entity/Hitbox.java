@@ -4,8 +4,8 @@ import org.bukkit.Location;
 
 public class Hitbox {
 
-    double x, y, z, x1, y1, z1;
-    double hx, hy, hz, hx1, hy1, hz1;
+    private double x, y, z, x1, y1, z1;
+    private double hx, hy, hz, hx1, hy1, hz1;
 
     public Hitbox() {
 

@@ -4,9 +4,9 @@ import org.bukkit.entity.Player;
 
 public class Module {
 
-    boolean enabled;
-    String name;
-    Player eventPlayer;
+    private boolean enabled;
+    private String name;
+    private Player eventPlayer;
 
     public Module(String name) {
         this.name = name;
