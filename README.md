@@ -12,4 +12,4 @@ Adds combat "utils" for your Minecraft Server.
 - Auto Totem
 
 ## Credits
-- TheTrouper [/link](https://github.com/thetrouper)
+- TheTrouper for the original idea. [TheTrouper Github](https://github.com/thetrouper)
