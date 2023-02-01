@@ -2,7 +2,6 @@ package me.improper.combatutils.plugin.modules;
 
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.entity.player.Hotbar;
-import me.improper.combatutils.geometry.Shape;
 import me.improper.combatutils.geometry.shapes.Sphere;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
@@ -13,6 +12,7 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.RespawnAnchor;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class AnchorAura extends Module {
@@ -24,20 +24,31 @@ public class AnchorAura extends Module {
 
     @Override
     public void onEnable() {
+        Player p = super.getEventPlayer();
+        if (p == null) return;
+        super.setEnabled(true);
+    }
 
+    @Override
+    public void onDisable() {
+        Player p = super.getEventPlayer();
+        if (p == null) return;
+        super.setEnabled(false);
     }
 
     @Override
     public void onTick() {
+        if (!super.isEnabled()) return;
         Player p = super.getEventPlayer();
         Hotbar hotbar = Hotbar.getHotbar(p);
         if (p == null) return;
+
         Location loc = p.getLocation();
         Sphere sphere = new Sphere(loc,30);
         for (Block block : sphere.blockList()) {
             Location bLoc = block.getLocation();
-            for (Entity entity : bLoc.getWorld().getNearbyEntities(bLoc, 2, 2, 2)) {
-                if (entity != null && entity != p && !entity.isDead() && block.isEmpty() && hotbar.containsItem(Material.GLOWSTONE)) {
+            for (Entity entity : bLoc.getWorld().getNearbyEntities(bLoc,2,2,2)) {
+                if (entity instanceof LivingEntity && entity != p && !entity.isDead() && block.isEmpty() && hotbar.containsItem(Material.GLOWSTONE)) {
                     block.setType(Material.RESPAWN_ANCHOR);
                     RespawnAnchor anchor = (RespawnAnchor) block.getBlockData();
                     anchor.setCharges(1);
@@ -45,6 +56,8 @@ public class AnchorAura extends Module {
                     ServerSound sound = new ServerSound(bLoc, Sound.BLOCK_RESPAWN_ANCHOR_CHARGE,1,0.7F);
                     sound.playWithin(100);
                     explode(block);
+                    hotbar.deductItem(Material.GLOWSTONE,false);
+                    hotbar.deductItem(Material.RESPAWN_ANCHOR,false);
                     return;
                 }
             }

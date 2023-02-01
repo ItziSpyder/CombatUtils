@@ -1,6 +1,7 @@
 package me.improper.combatutils.event;
 
 import me.improper.combatutils.plugin.modules.AnchorAura;
+import me.improper.combatutils.plugin.modules.CrystalAura;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,13 @@ public class OnClick implements Listener {
             switch (item.getType()) {
                 case RESPAWN_ANCHOR -> {
                     AnchorAura aa = new AnchorAura();
+                    aa.setEnabled(true);
+                    aa.setEventPlayer(p);
+                    aa.onTick();
+                }
+                case END_CRYSTAL -> {
+                    CrystalAura aa = new CrystalAura();
+                    aa.setEnabled(true);
                     aa.setEventPlayer(p);
                     aa.onTick();
                 }

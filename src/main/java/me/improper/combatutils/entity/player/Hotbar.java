@@ -1,5 +1,6 @@
 package me.improper.combatutils.entity.player;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -18,9 +19,11 @@ public class Hotbar {
     }
 
     private ItemStack[] contents;
+    private Player owner;
 
     public Hotbar(Player player) {
         this.contents = new ItemStack[9];
+        this.owner = player;
         Inventory inv = player.getInventory();
         for (int i = 0; i < 9; i ++) {
             ItemStack item = inv.getItem(i);
@@ -42,8 +45,16 @@ public class Hotbar {
         this.contents = contents;
     }
 
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
     public ItemStack[] getContents() {
         return contents;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 
     public boolean containsItem(ItemStack item) {
@@ -60,7 +71,8 @@ public class Hotbar {
         return false;
     }
 
-    public void deductItem(ItemStack item) {
+    public void deductItem(ItemStack item, boolean ignoreGamemode) {
+        if (this.owner != null && !ignoreGamemode && this.owner.getGameMode().equals(GameMode.CREATIVE)) return;
         for (int i = 0; i < 9; i ++) {
             if (this.contents[i] == item && item.getAmount() > 0) {
                 item.setAmount(item.getAmount() - 1);
@@ -69,7 +81,8 @@ public class Hotbar {
         }
     }
 
-    public void deductItem(Material type) {
+    public void deductItem(Material type, boolean ignoreGamemode) {
+        if (this.owner != null && !ignoreGamemode && this.owner.getGameMode().equals(GameMode.CREATIVE)) return;
         for (int i = 0; i < 9; i ++) {
             ItemStack item = this.contents[i];
             if (item.getType().equals(type) && item.getAmount() > 0) {
@@ -79,21 +92,23 @@ public class Hotbar {
         }
     }
 
-    public void deductItem(ItemStack item, int amount) {
+    public void deductItem(ItemStack item, int amount, boolean ignoreGamemode) {
+        if (this.owner != null && !ignoreGamemode && this.owner.getGameMode().equals(GameMode.CREATIVE)) return;
         for (int i = 0; i < 9; i ++) {
             if (this.contents[i] == item && item.getAmount() > 0) {
-                amount = (item.getAmount() - amount) > 0 ? amount : (item.getAmount() - 1);
+                amount = (item.getAmount() - amount) >= 0 ? amount : item.getAmount();
                 item.setAmount(item.getAmount() - amount);
                 break;
             }
         }
     }
 
-    public void deductItem(Material type, int amount) {
+    public void deductItem(Material type, int amount, boolean ignoreGamemode) {
+        if (this.owner != null && !ignoreGamemode && this.owner.getGameMode().equals(GameMode.CREATIVE)) return;
         for (int i = 0; i < 9; i ++) {
             ItemStack item = this.contents[i];
             if (item.getType().equals(type) && item.getAmount() > 0) {
-                amount = (item.getAmount() - amount) > 0 ? amount : (item.getAmount() - 1);
+                amount = (item.getAmount() - amount) >= 0 ? amount : item.getAmount();
                 item.setAmount(item.getAmount() - amount);
                 break;
             }
