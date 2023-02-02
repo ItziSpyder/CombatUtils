@@ -3,6 +3,7 @@ package me.improper.combatutils.plugin.modules;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.geometry.shapes.Cube;
+import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
@@ -15,7 +16,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class CrystalAura extends Module {
+public class CrystalAura extends Module implements IModule {
 
     public CrystalAura() {
         super("CrystalAura");
@@ -26,6 +27,7 @@ public class CrystalAura extends Module {
         Player p = super.getEventPlayer();
         if (p == null) return;
         super.setEnabled(true);
+        p.sendMessage(super.getModuleStatus());
     }
 
     @Override
@@ -33,6 +35,7 @@ public class CrystalAura extends Module {
         Player p = super.getEventPlayer();
         if (p == null) return;
         super.setEnabled(false);
+        p.sendMessage(super.getModuleStatus());
     }
 
     @Override
@@ -40,14 +43,14 @@ public class CrystalAura extends Module {
         if (!super.isEnabled()) return;
         Player p = super.getEventPlayer();
         if (p == null) return;
-
         Hotbar hotbar = Hotbar.getHotbar(p);
         Location loc = p.getLocation();
-        Cube cube = new Cube(loc.clone().add(10,6,10),loc.clone().add(-10,0,-10));
+        Cube cube = new Cube(loc.clone().add(6,6,6),loc.clone().add(-6,-6,-6));
+
         for (Block block : cube.blockList()) {
             Location bLoc = block.getLocation();
             for (Entity entity : bLoc.getWorld().getNearbyEntities(bLoc,2,2,2)) {
-                if (entity != p && entity instanceof LivingEntity && !entity.isDead() && hotbar.containsItem(Material.OBSIDIAN)) {
+                if (entity != p && entity instanceof LivingEntity && !entity.isDead() && hotbar.containsItem(Material.END_CRYSTAL)) {
                     if (block.getType().equals(Material.AIR) && hotbar.containsItem(Material.OBSIDIAN)) {
                         block.setType(Material.OBSIDIAN);
                         hotbar.deductItem(Material.OBSIDIAN,false);

@@ -1,8 +1,10 @@
 package me.improper.combatutils.plugin;
 
+import me.improper.combatutils.CombatUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class Module {
+public abstract class Module {
 
     private boolean enabled;
     private String name;
@@ -16,8 +18,11 @@ public class Module {
         this.eventPlayer = eventPlayer;
     }
 
-    public void enableModule() {
-
+    public String getModuleStatus() {
+        return CombatUtils.STARTER +
+                ChatColor.WHITE + this.name + " " +
+                ChatColor.GRAY + "set to " +
+                ChatColor.WHITE + this.enabled;
     }
 
     public void onEnable() {

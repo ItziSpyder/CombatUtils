@@ -3,6 +3,7 @@ package me.improper.combatutils.plugin.modules;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.geometry.shapes.Sphere;
+import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
@@ -15,7 +16,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class AnchorAura extends Module {
+public class AnchorAura extends Module implements IModule {
 
 
     public AnchorAura() {
@@ -27,6 +28,7 @@ public class AnchorAura extends Module {
         Player p = super.getEventPlayer();
         if (p == null) return;
         super.setEnabled(true);
+        p.sendMessage(super.getModuleStatus());
     }
 
     @Override
@@ -34,6 +36,7 @@ public class AnchorAura extends Module {
         Player p = super.getEventPlayer();
         if (p == null) return;
         super.setEnabled(false);
+        p.sendMessage(super.getModuleStatus());
     }
 
     @Override
@@ -42,13 +45,13 @@ public class AnchorAura extends Module {
         Player p = super.getEventPlayer();
         Hotbar hotbar = Hotbar.getHotbar(p);
         if (p == null) return;
-
         Location loc = p.getLocation();
-        Sphere sphere = new Sphere(loc,30);
+        Sphere sphere = new Sphere(loc,50);
+
         for (Block block : sphere.blockList()) {
             Location bLoc = block.getLocation();
             for (Entity entity : bLoc.getWorld().getNearbyEntities(bLoc,2,2,2)) {
-                if (entity instanceof LivingEntity && entity != p && !entity.isDead() && block.isEmpty() && hotbar.containsItem(Material.GLOWSTONE)) {
+                if (entity instanceof LivingEntity && entity != p && !entity.isDead() && block.isEmpty() && hotbar.containsItem(Material.GLOWSTONE) && hotbar.containsItem(Material.RESPAWN_ANCHOR)) {
                     block.setType(Material.RESPAWN_ANCHOR);
                     RespawnAnchor anchor = (RespawnAnchor) block.getBlockData();
                     anchor.setCharges(1);
