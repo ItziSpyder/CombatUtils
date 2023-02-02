@@ -1,5 +1,5 @@
 # CombatUtils
-Adds combat "utils" for your Minecraft Server.
+### Adds combat "utils" for your Minecraft Server.
 -----------------------------------------------------
 ## Combat & Utilities
 - Anchor Aura
