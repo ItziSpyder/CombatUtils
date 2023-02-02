@@ -22,7 +22,7 @@ public class OnClick implements Listener {
             ItemStack item = e.getItem();
             Profile profile = Profile.getProfile(p);
             switch (e.getAction()) {
-                case LEFT_CLICK_AIR -> {
+                case LEFT_CLICK_AIR,LEFT_CLICK_BLOCK -> {
                     Module reach = profile.getModuleObject("Reach");
                     if (reach.isEnabled()) {
                         LivingEntity entity = getRaycasted(p);

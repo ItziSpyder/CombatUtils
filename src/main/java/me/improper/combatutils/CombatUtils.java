@@ -40,7 +40,7 @@ public final class CombatUtils extends JavaPlugin {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Profile profile = Profile.getProfile(p);
-                    profile.getModules().forEach(Module::onTick);
+                    for (Module mod : profile.getModules()) mod.onTick();
                 }
             }
         }.runTaskTimer(this,0,5);

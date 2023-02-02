@@ -10,25 +10,26 @@ import java.util.UUID;
 
 public class Profile implements Serializable {
 
-    private static HashMap<String,Profile> PROFILES = new HashMap<>();
+    public static HashMap<String,Profile> PROFILES = new HashMap<>();
 
     public static Profile getProfile(Player player) {
         Profile profile = PROFILES.get(player.getName());
-        if (profile == null) profile = new Profile(player);
+        if (profile != null) return profile;
+        profile = new Profile(player);
         PROFILES.put(player.getName(),profile);
         return profile;
     }
 
-    String name;
-    UUID uuid;
-    List<Module> modules;
+    private String name;
+    private UUID uuid;
+    private List<Module> modules;
 
     public Profile(Player player) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.modules = new ArrayList<>();
         for (Modules mods : Modules.values()) {
-            Module module = mods.getModule();
+            Module module = mods.getModule().clone();
             module.setEventPlayer(player);
             module.setEnabled(false);
             modules.add(module);

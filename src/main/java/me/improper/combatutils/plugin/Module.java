@@ -4,7 +4,7 @@ import me.improper.combatutils.CombatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public abstract class Module {
+public abstract class Module implements Cloneable {
 
     private boolean enabled;
     private String name;
@@ -59,5 +59,14 @@ public abstract class Module {
 
     public void setEventPlayer(Player eventPlayer) {
         this.eventPlayer = eventPlayer;
+    }
+
+    @Override
+    public Module clone() {
+        try {
+            return (Module) super.clone();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }

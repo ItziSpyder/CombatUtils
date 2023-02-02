@@ -1,6 +1,5 @@
 package me.improper.combatutils.plugin.modules;
 
-import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -8,7 +7,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-public class KillAura extends Module implements IModule {
+public class KillAura extends Module {
 
     private double damage;
 

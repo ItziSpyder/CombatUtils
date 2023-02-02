@@ -1,10 +1,9 @@
 package me.improper.combatutils.plugin.modules;
 
-import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import org.bukkit.entity.Player;
 
-public class AutoTotem extends Module implements IModule {
+public class AutoTotem extends Module {
 
     public AutoTotem() {
         super("AutoTotem");

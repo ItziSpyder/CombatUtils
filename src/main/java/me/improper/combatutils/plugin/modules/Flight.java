@@ -1,12 +1,11 @@
 package me.improper.combatutils.plugin.modules;
 
-import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-public class Flight extends Module implements IModule {
+public class Flight extends Module {
 
     private float ogSpeed;
 

@@ -3,7 +3,6 @@ package me.improper.combatutils.plugin.modules;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.geometry.shapes.Cube;
-import me.improper.combatutils.plugin.IModule;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
@@ -16,7 +15,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class CrystalAura extends Module implements IModule {
+public class CrystalAura extends Module {
 
     public CrystalAura() {
         super("CrystalAura");

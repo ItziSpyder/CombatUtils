@@ -5,10 +5,10 @@ import me.improper.combatutils.plugin.modules.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Modules {
+public enum Modules implements Cloneable {
 
     ANCHORAURA(AnchorAura.class, new AnchorAura()),
-    AUTOTOTEM(AntiKb.class, new AntiKb()),
+    AUTOTOTEM(AutoTotem.class, new AutoTotem()),
     CRYSTALAURA(CrystalAura.class, new CrystalAura()),
     DODGE(Dodge.class, new Dodge()),
     FLIGHT(Flight.class, new Flight()),
