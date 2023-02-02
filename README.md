@@ -15,7 +15,7 @@
 - Criticals
 
 ## Commands
-- /#toggle <module>
+- /#toggle `modulename`
 
 ## Credits
 - TheTrouper for the original idea. [TheTrouper Github](https://github.com/thetrouper)
