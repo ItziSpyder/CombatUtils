@@ -16,4 +16,4 @@ Adds combat "utils" for your Minecraft Server.
 
 ## Credits
 - TheTrouper for the original idea. [TheTrouper Github](https://github.com/thetrouper)
-- ł_₲Ø₮_ɎØɄ_ĐɆ₳Đ#1337 also provided ideas
+- ł_₲Ø₮_ɎØɄ_ĐɆ₳Đ#1337 also provided ideas [I-Got-You-Dead Github](https://github.com/I-Got-You-Dead)
