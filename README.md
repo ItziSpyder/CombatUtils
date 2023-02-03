@@ -17,10 +17,14 @@
 - Criticals
 - AimBot
 
+![CombatUtils Commands](/assets/images/cucommands.png)
+
 ## Commands
 - /#toggle `modulename`
 - /#crash `method` `player`
 - /#spam `amount` `greedymessagestring`
+
+![CombatUtils Credits and Contributors](/assets/images/cucredits.png)
 
 ## Credits
 - TheTrouper for the original idea. [TheTrouper Github](https://github.com/thetrouper)
