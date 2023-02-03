@@ -1,6 +1,7 @@
 package me.improper.combatutils.plugin;
 
 import me.improper.combatutils.CombatUtils;
+import me.improper.combatutils.data.SavedPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -8,14 +9,15 @@ public abstract class Module implements Cloneable {
 
     private boolean enabled;
     private String name;
-    private Player eventPlayer;
+    private SavedPlayer eventPlayer;
 
     public Module(String name) {
         this.name = name;
     }
 
     public Module(Player eventPlayer) {
-        this.eventPlayer = eventPlayer;
+        this.name = "NewModule";
+        this.eventPlayer = new SavedPlayer(eventPlayer);
     }
 
     public String getModuleStatus() {
@@ -46,7 +48,7 @@ public abstract class Module implements Cloneable {
     }
 
     public Player getEventPlayer() {
-        return eventPlayer;
+        return eventPlayer.getPlayer();
     }
 
     public void setName(String name) {
@@ -58,6 +60,10 @@ public abstract class Module implements Cloneable {
     }
 
     public void setEventPlayer(Player eventPlayer) {
+        this.eventPlayer = new SavedPlayer(eventPlayer);
+    }
+
+    public void setEventPlayer(SavedPlayer eventPlayer) {
         this.eventPlayer = eventPlayer;
     }
 
