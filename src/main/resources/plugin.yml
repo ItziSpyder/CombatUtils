@@ -9,8 +9,19 @@ permissions:
   combatutils.modules:
     description: Access to all combat util modules.
     default: op
+  combatutils.commands:
+    description: Access to all combat util commands except for module access.
+    default: op
 commands:
   "#toggle":
     description: Toggle modules for CombatUtils
-    usage: /toggle <module> [<on>|<off>]
+    usage: /#toggle <module>
     permission: combatutils.modules
+  "#spam":
+    description: Spams a message for a specified amount of times
+    usage: /#spam <amount> [<message>]
+    permission: combatutils.commands
+  "#crash":
+    description: Attempts (not guaranteed to work) to crash a player
+    usage: /#crash <mode> <player>
+    permission: combatutils.commands

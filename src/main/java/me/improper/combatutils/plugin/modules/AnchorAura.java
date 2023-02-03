@@ -1,6 +1,7 @@
 package me.improper.combatutils.plugin.modules;
 
 import me.improper.combatutils.CombatUtils;
+import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.geometry.shapes.Sphere;
 import me.improper.combatutils.plugin.Module;
@@ -69,7 +70,10 @@ public class AnchorAura extends Module {
     public void explode(Block block) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
             block.setType(Material.AIR);
-            block.getWorld().createExplosion(block.getLocation(),5,true,true,super.getEventPlayer());
+            block.getWorld().createExplosion(block.getLocation(),5,
+                    Config.GAMEPLAY.getExplosionFire(),
+                    Config.GAMEPLAY.getExplosionBlockDamage(),
+                    super.getEventPlayer());
             ServerSound sound = new ServerSound(block.getLocation(), Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
             sound.playWithin(5000);
         },4);

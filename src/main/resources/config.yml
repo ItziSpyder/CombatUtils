@@ -11,6 +11,8 @@ config:
   plugin:
     prefix: "§7[§4CombatUtils§7]"
   gameplay:
+    explosion-block-damage: true
+    explosion-fire: true
 
 
 

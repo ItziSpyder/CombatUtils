@@ -1,6 +1,7 @@
 package me.improper.combatutils.plugin.modules;
 
 import me.improper.combatutils.CombatUtils;
+import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.geometry.shapes.Cube;
 import me.improper.combatutils.plugin.Module;
@@ -76,7 +77,9 @@ public class CrystalAura extends Module {
 
     public void explode(Location location) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
-            location.getWorld().createExplosion(location,5,true,true,super.getEventPlayer());
+            location.getWorld().createExplosion(location,5,false,
+                    Config.GAMEPLAY.getExplosionBlockDamage(),
+                    super.getEventPlayer());
             ServerSound sound = new ServerSound(location, Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
             sound.playWithin(5000);
         },4);

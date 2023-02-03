@@ -12,4 +12,13 @@ public abstract class Config {
             return CONFIG.getString("config.plugin.prefix");
         }
     }
+
+    public class GAMEPLAY {
+        public static boolean getExplosionBlockDamage() {
+            return CONFIG.getBoolean("config.gameplay.explosion-block-damage");
+        }
+        public static boolean getExplosionFire() {
+            return CONFIG.getBoolean("config.gameplay.explosion-fire");
+        }
+    }
 }
