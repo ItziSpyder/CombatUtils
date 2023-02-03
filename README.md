@@ -13,9 +13,12 @@
 - Dodge
 - No Fall
 - Criticals
+- AimBot
 
 ## Commands
 - /#toggle `modulename`
+- /#crash `method` `player`
+- /#spam `amount` `greedymessagestring`
 
 ## Credits
 - TheTrouper for the original idea. [TheTrouper Github](https://github.com/thetrouper)
