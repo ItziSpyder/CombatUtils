@@ -55,7 +55,7 @@ public class Commands implements CommandExecutor {
                             return true;
                         }
                         case "message" -> {
-                            for (int i = 0; i < 1000; i ++) p.sendMessage(CombatUtils.ESSAY);
+                            for (int i = 0; i < 690; i ++) p.sendMessage(CombatUtils.ESSAY);
                             sender.sendMessage(CombatUtils.STARTER +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Message " +

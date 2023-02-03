@@ -17,6 +17,7 @@ public enum Modules implements Cloneable {
     SPEED(Speed.class, new Speed()),
     CRITICALS(Criticals.class, new Criticals()),
     NOFALL(NoFall.class, new NoFall()),
+    AIMBOT(AimBot.class, new AimBot()),
     ANTIKB(AntiKb.class, new AntiKb());
 
     private Class<? extends Module> moduleClass;

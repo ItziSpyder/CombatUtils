@@ -5,7 +5,7 @@ import me.improper.combatutils.commands.Tabs;
 import me.improper.combatutils.data.Config;
 import me.improper.combatutils.event.OnClick;
 import me.improper.combatutils.event.OnDamage;
-import me.improper.combatutils.plugin.Module;
+import me.improper.combatutils.event.OnProjectile;
 import me.improper.combatutils.plugin.Profile;
 import me.improper.combatutils.server.ServerUtils;
 import org.bukkit.Bukkit;
@@ -28,6 +28,7 @@ public final class CombatUtils extends JavaPlugin {
         // Events
         Bukkit.getPluginManager().registerEvents(new OnClick(),this);
         Bukkit.getPluginManager().registerEvents(new OnDamage(),this);
+        Bukkit.getPluginManager().registerEvents(new OnProjectile(),this);
 
         // Files
         getConfig().options().copyDefaults();
@@ -47,7 +48,9 @@ public final class CombatUtils extends JavaPlugin {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Profile profile = Profile.getProfile(p);
-                    profile.getModules().forEach(Module::onTick);
+                    profile.getModules().forEach(module -> {
+                        if (module.isEnabled()) module.onTick();
+                    });
                 }
             }
         }.runTaskTimer(this,0,5);
@@ -60,7 +63,9 @@ public final class CombatUtils extends JavaPlugin {
         // Shutdown
         for (Player p : Bukkit.getOnlinePlayers()) {
             Profile profile = Profile.getProfile(p);
-            profile.getModules().forEach(Module::onDisable);
+            profile.getModules().forEach(module -> {
+                if (module.isEnabled()) module.onDisable();
+            });
         }
     }
 
