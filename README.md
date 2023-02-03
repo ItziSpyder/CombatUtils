@@ -1,6 +1,7 @@
 ![CombatUtils](/assets/images/cubanner.png)
 
 # CombatUtils
+##### Download Now -> [build/libs](/build/libs)
 ### Adds combat "utils" for your Minecraft Server.
 -----------------------------------------------------
 ## Combat & Utilities
