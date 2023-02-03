@@ -2,7 +2,13 @@
 
 # CombatUtils
 ##### Download Now -> [build/libs](/build/libs)
+##### Spigot Page -> [CombatUtils on SpigotMC](https://www.spigotmc.org/resources/combatutils.107791/)
+
 ### Adds combat "utils" for your Minecraft Server.
+-----------------------------------------------------
+
+![CombatUtils.mp4](/assets/videos/CombatUtils.mp4)
+
 -----------------------------------------------------
 ## Combat & Utilities
 - Anchor Aura
