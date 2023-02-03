@@ -22,6 +22,8 @@ public final class CombatUtils extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
         STARTER = Config.PLUGIN.getPrefix().trim() + " ";
         ESSAY = ServerUtils.generateLargeString();
 
@@ -31,8 +33,6 @@ public final class CombatUtils extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new OnProjectile(),this);
 
         // Files
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
 
         // Commands
         getCommand("#toggle").setExecutor(new Commands());
