@@ -4,7 +4,7 @@
 ##### Download Now -> [Releases](/releases)
 ##### Spigot Page -> [CombatUtils on SpigotMC](https://www.spigotmc.org/resources/combatutils.107791/)
 
-### Adds combat "utils" for your Minecraft Server.
+### Based Server-Side Combat Utilities For Your Minecraft Server
 -----------------------------------------------------
 
 ![CombatUtils.mp4](/assets/videos/CombatUtils.mp4)
