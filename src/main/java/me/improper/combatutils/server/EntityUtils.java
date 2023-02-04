@@ -12,7 +12,7 @@ public abstract class EntityUtils {
         for (Entity entity : location.getWorld().getNearbyEntities(location,radius,radius,radius)) {
             double curDist = location.distance(entity.getLocation());
             if (!(entity instanceof LivingEntity)) continue;
-            if (curDist < distance && !entity.isDead()) continue;
+            if (curDist >= distance || entity.isDead()) continue;
             closest = (LivingEntity) entity;
             distance = curDist;
         }
@@ -25,7 +25,7 @@ public abstract class EntityUtils {
         for (Entity entity : center.getWorld().getNearbyEntities(center.getLocation(),radius,radius,radius)) {
             double curDist = center.getLocation().distance(entity.getLocation());
             if (!(entity instanceof LivingEntity)) continue;
-            if (curDist < distance && !entity.isDead()) continue;
+            if (curDist >= distance || entity.isDead()) continue;
             closest = (LivingEntity) entity;
             distance = curDist;
         }
