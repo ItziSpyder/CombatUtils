@@ -25,3 +25,7 @@ commands:
     description: Attempts (not guaranteed to work) to crash a player
     usage: /#crash <mode> <player>
     permission: combatutils.commands
+  "#pause":
+    description: Pause all modules in your profile
+    usage: /#pause
+    permission: combatutils.modules

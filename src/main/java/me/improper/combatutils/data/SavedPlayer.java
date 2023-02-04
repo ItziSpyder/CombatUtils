@@ -17,7 +17,7 @@ public class SavedPlayer implements Serializable {
     }
 
     public Player getPlayer() {
-        return Bukkit.getPlayer(name);
+        return Bukkit.getPlayer(uuid);
     }
 
     public UUID getUuid() {

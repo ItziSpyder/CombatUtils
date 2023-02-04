@@ -10,24 +10,16 @@ import java.util.UUID;
 
 public class Profile implements Serializable {
 
-    public static HashMap<String,Profile> PROFILES = new HashMap<>();
-
-    public static Profile getProfile(Player player) {
-        Profile profile = PROFILES.get(player.getName());
-        if (profile != null) return profile;
-        profile = new Profile(player);
-        PROFILES.put(player.getName(),profile);
-        return profile;
-    }
-
     private String name;
     private UUID uuid;
     private List<Module> modules;
+    private boolean paused;
 
     public Profile(Player player) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.modules = new ArrayList<>();
+        this.paused = false;
         for (Modules mods : Modules.values()) {
             Module module = mods.getModule().clone();
             module.setEventPlayer(player);
@@ -64,6 +56,10 @@ public class Profile implements Serializable {
         return uuid;
     }
 
+    public boolean isPaused() {
+        return paused;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -83,5 +79,9 @@ public class Profile implements Serializable {
             list.add(segments[segments.length - 1]);
         }
         return list;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 }

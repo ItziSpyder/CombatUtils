@@ -3,6 +3,7 @@ package me.improper.combatutils.event;
 import me.improper.combatutils.entity.hitboxes.LargeHitbox;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
+import me.improper.combatutils.plugin.ProfileLoader;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -20,7 +21,7 @@ public class OnClick implements Listener {
         Player p = e.getPlayer();
         try {
             ItemStack item = e.getItem();
-            Profile profile = Profile.getProfile(p);
+            Profile profile = ProfileLoader.loadProfile(p);
             switch (e.getAction()) {
                 case LEFT_CLICK_AIR,LEFT_CLICK_BLOCK -> {
                     Module reach = profile.getModuleObject("Reach");

@@ -2,7 +2,8 @@ package me.improper.combatutils.event;
 
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
-import me.improper.combatutils.server.ServerUtils;
+import me.improper.combatutils.plugin.ProfileLoader;
+import me.improper.combatutils.server.EntityUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -22,10 +23,10 @@ public class OnProjectile implements Listener {
             ProjectileSource src = e.getEntity().getShooter();
             if (src == null) return;
             if (src instanceof Player p) {
-                Profile profile = Profile.getProfile(p);
+                Profile profile = ProfileLoader.loadProfile(p);
                 Module aimBot = profile.getModuleObject("AimBot");
                 if (aimBot.isEnabled()) {
-                    Entity ent = ServerUtils.getClosestEntity(p,30);
+                    Entity ent = EntityUtils.getClosestEntity(p,30);
                     if (ent instanceof LivingEntity living && !ent.isDead() && ent != src && ent != proj) {
                         Vector dir = living.getEyeLocation().toVector().subtract(p.getEyeLocation().toVector()).normalize().multiply(4.5);
                         proj.setVelocity(dir);

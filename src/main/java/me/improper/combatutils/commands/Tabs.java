@@ -17,6 +17,7 @@ public class Tabs implements TabCompleter {
         String commandName = command.getName().toLowerCase().trim();
 
         switch (commandName) {
+            case "#pause" -> {}
             case "#toggle" -> {
                 switch (args.length) {
                     case 1 -> list.addAll(Modules.stringValues());

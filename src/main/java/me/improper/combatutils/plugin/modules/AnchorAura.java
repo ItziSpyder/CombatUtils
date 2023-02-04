@@ -3,6 +3,7 @@ package me.improper.combatutils.plugin.modules;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
+import me.improper.combatutils.entity.player.HotbarLoader;
 import me.improper.combatutils.geometry.shapes.Sphere;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
@@ -43,7 +44,7 @@ public class AnchorAura extends Module {
     public void onTick() {
         if (!super.isEnabled()) return;
         Player p = super.getEventPlayer();
-        Hotbar hotbar = Hotbar.getHotbar(p);
+        Hotbar hotbar = HotbarLoader.from(p);
         if (p == null) return;
         Location loc = p.getLocation();
         Sphere sphere = new Sphere(loc,50);

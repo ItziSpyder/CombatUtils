@@ -3,6 +3,7 @@ package me.improper.combatutils.plugin.modules;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
+import me.improper.combatutils.entity.player.HotbarLoader;
 import me.improper.combatutils.geometry.shapes.Cube;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
@@ -43,7 +44,7 @@ public class CrystalAura extends Module {
         if (!super.isEnabled()) return;
         Player p = super.getEventPlayer();
         if (p == null) return;
-        Hotbar hotbar = Hotbar.getHotbar(p);
+        Hotbar hotbar = HotbarLoader.from(p);
         Location loc = p.getLocation();
         Cube cube = new Cube(loc.clone().add(6,6,6),loc.clone().add(-6,-6,-6));
 

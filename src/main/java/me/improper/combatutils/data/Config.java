@@ -11,6 +11,9 @@ public abstract class Config {
         public static String getPrefix() {
             return CONFIG.getString("config.plugin.prefix");
         }
+        public static Character getCmdPrefixChar() {
+            return CONFIG.getString("config.plugin.custom-command-prefix-character").charAt(0);
+        }
     }
 
     public class GAMEPLAY {

@@ -5,7 +5,7 @@ import me.improper.combatutils.data.SavedPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public abstract class Module implements Cloneable {
+public abstract class Module implements Cloneable, IToggleable {
 
     private boolean enabled;
     private String name;
@@ -27,24 +27,33 @@ public abstract class Module implements Cloneable {
                 ChatColor.WHITE + this.enabled;
     }
 
+    @Override
     public void onEnable() {
 
     }
 
+    @Override
     public void onDisable() {
 
     }
 
+    @Override
     public void onTick() {
 
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
+    @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Player getEventPlayer() {
@@ -53,10 +62,6 @@ public abstract class Module implements Cloneable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public void setEventPlayer(Player eventPlayer) {

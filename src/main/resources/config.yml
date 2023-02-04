@@ -10,11 +10,10 @@
 config:
   plugin:
     prefix: "§7[§4CombatUtils§7]"
+    custom-command-prefix-character: '>'
   gameplay:
     explosion-block-damage: true
     explosion-fire: true
-
-
 
 
 

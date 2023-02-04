@@ -3,6 +3,7 @@ package me.improper.combatutils.event;
 import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
+import me.improper.combatutils.plugin.ProfileLoader;
 import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -27,7 +28,7 @@ public class OnDamage implements Listener {
             Entity entity = e.getEntity();
 
             if (entity instanceof Player p ) {
-                Profile profile = Profile.getProfile(p);
+                Profile profile = ProfileLoader.loadProfile(p);
                 switch (e.getCause()) {
                     case FALL -> {
                        Module noFall = profile.getModuleObject("NoFall");
@@ -71,7 +72,7 @@ public class OnDamage implements Listener {
             Entity damager = e.getDamager();
 
             if (damager instanceof Player p && victim instanceof LivingEntity) {
-                Profile profile = Profile.getProfile(p);
+                Profile profile = ProfileLoader.loadProfile(p);
                 Module criticals = profile.getModuleObject("Criticals");
                 ServerSound crit = new ServerSound(victim.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 1);
                 if (criticals.isEnabled() && p.getAttackCooldown() >= 0.8) {
@@ -81,7 +82,7 @@ public class OnDamage implements Listener {
                 }
             }
             else if (damager instanceof LivingEntity && victim instanceof Player p) {
-                Profile profile = Profile.getProfile(p);
+                Profile profile = ProfileLoader.loadProfile(p);
                 Module dodge = profile.getModuleObject("Dodge");
                 if (dodge.isEnabled()) {
                     if (Math.floor(ran(0,10)) >= 7) e.setCancelled(true);
@@ -99,7 +100,7 @@ public class OnDamage implements Listener {
     @EventHandler
     public static void onVelocity(PlayerVelocityEvent e) {
         Player p = e.getPlayer();
-        Profile profile = Profile.getProfile(p);
+        Profile profile = ProfileLoader.loadProfile(p);
         Module antiKb = profile.getModuleObject("AntiKb");
         if (antiKb.isEnabled()) e.setCancelled(true);
     }
