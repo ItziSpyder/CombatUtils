@@ -1,7 +1,7 @@
 ![CombatUtils](/assets/images/cubanner.png)
 
 # CombatUtils
-##### Download Now -> [build/libs](/build/libs)
+##### Download Now -> [Releases](/releases)
 ##### Spigot Page -> [CombatUtils on SpigotMC](https://www.spigotmc.org/resources/combatutils.107791/)
 
 ### Adds combat "utils" for your Minecraft Server.
