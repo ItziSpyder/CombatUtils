@@ -32,7 +32,7 @@ public class ModuleCommands implements ChatCommandExecutor {
                     if (sender instanceof Player p) {
                         int times = Integer.parseInt(args[0]);
                         String msg = ArgBuilder.buildArgs(args,1);
-                        if (times > 100) sender.sendMessage(CombatUtils.STARTER + ChatColor.RED + "This action is over the safety limits, you might lag yourself!");
+                        if (times > 100) sender.sendMessage(CombatUtils.starter + ChatColor.RED + "This action is over the safety limits, you might lag yourself!");
                         for (int i = 0; i < times; i ++) p.chat(msg);
                     }
                 }
@@ -41,15 +41,15 @@ public class ModuleCommands implements ChatCommandExecutor {
                     switch (args[0]) {
                         case "particle" -> {
                             p.spawnParticle(Particle.FLAME,p.getEyeLocation(),999999999,0,0,0,0);
-                            sender.sendMessage(CombatUtils.STARTER +
+                            sender.sendMessage(CombatUtils.starter +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Particle " +
                                     ChatColor.GRAY + "crash " +
                                     ChatColor.WHITE + p.getName());
                         }
                         case "message" -> {
-                            for (int i = 0; i < 690; i ++) p.sendMessage(CombatUtils.ESSAY);
-                            sender.sendMessage(CombatUtils.STARTER +
+                            for (int i = 0; i < 690; i ++) p.sendMessage(CombatUtils.essay);
+                            sender.sendMessage(CombatUtils.starter +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Message " +
                                     ChatColor.GRAY + "crash " +
@@ -61,14 +61,14 @@ public class ModuleCommands implements ChatCommandExecutor {
                     if (sender instanceof Player p) {
                         Profile profile = ProfileLoader.loadProfile(p);
                         profile.setPaused(!profile.isPaused());
-                        sender.sendMessage(CombatUtils.STARTER +
+                        sender.sendMessage(CombatUtils.starter +
                                 ChatColor.GRAY + "Set own profile \"paused\" to " +
                                 ChatColor.WHITE + profile.isPaused());
                     }
                 }
                 case "help" -> {
                     String sep = ChatColor.WHITE + " | " + ChatColor.DARK_GRAY;
-                    sender.sendMessage("\n" +CombatUtils.STARTER + ChatColor.WHITE + "Command help:" + "\n " +
+                    sender.sendMessage("\n" +CombatUtils.starter + ChatColor.WHITE + "Command help:" + "\n " +
                             ChatColor.YELLOW + ">help " + ChatColor.GRAY + "" + sep + "List of commands and usages\n " +
                             ChatColor.YELLOW + ">crash " + ChatColor.GRAY + "<method> <player>" + sep + "Crash a player's client\n " +
                             ChatColor.YELLOW + ">toggle " + ChatColor.GRAY + "<module>" + sep + "Toggle a profile module\n " +
@@ -81,7 +81,7 @@ public class ModuleCommands implements ChatCommandExecutor {
             }
             return true;
         } catch (Exception ex) {
-            String msg = CombatUtils.STARTER + ChatColor.RED + "Command Error: ";
+            String msg = CombatUtils.starter + ChatColor.RED + "Command Error: ";
             if (ex instanceof NullPointerException) msg += "Command contains a null value!";
             else if (ex instanceof IndexOutOfBoundsException) msg += "Incomplete command! Please provide more information!";
             else msg += ex.getMessage();

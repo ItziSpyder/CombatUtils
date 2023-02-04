@@ -25,9 +25,9 @@ public class OnChat implements Listener {
         if (msg.charAt(0) == commandPrefix) {
             e.setCancelled(true);
             ChatCommand cmd = new ChatCommand(msg);
-            if (!moduleCommands.execute(p,cmd)) p.sendMessage(CombatUtils.STARTER +
+            if (!moduleCommands.execute(p,cmd)) p.sendMessage(CombatUtils.starter +
                     ChatColor.RED + "Unknown command \"" + cmd.getName() + "\", \">help\" for help");
-            else p.sendMessage(CombatUtils.STARTER +
+            else p.sendMessage(CombatUtils.starter +
                     ChatColor.WHITE + "Executed: " +
                     ChatColor.YELLOW + commandPrefix + cmd.getName() + " " +
                     ChatColor.GRAY + ArgBuilder.buildArgs(cmd.getArgs()));

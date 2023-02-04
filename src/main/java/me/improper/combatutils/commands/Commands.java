@@ -17,7 +17,7 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String commandString = command.getName() + " " + ArgBuilder.buildArgs(args);
         ChatCommand cmd = new ChatCommand(commandString);
-        if (!moduleCommands.execute(sender,cmd)) sender.sendMessage(CombatUtils.STARTER +
+        if (!moduleCommands.execute(sender,cmd)) sender.sendMessage(CombatUtils.starter +
                 ChatColor.RED + "Unknown command \"" + cmd.getName() + "\", \">help\" for help");
         return true;
     }

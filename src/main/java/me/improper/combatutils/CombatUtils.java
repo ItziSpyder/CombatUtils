@@ -18,16 +18,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class CombatUtils extends JavaPlugin {
 
-    public static String STARTER = "";
-    public static String ESSAY = "";
+    public static String starter = "";
+    public static String essay = "";
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-        STARTER = Config.PLUGIN.getPrefix().trim() + " ";
-        ESSAY = ArgBuilder.generateLargeString();
+        starter = Config.PLUGIN.getPrefix().trim() + " ";
+        essay = ArgBuilder.generateLargeString();
 
         // Events
         Bukkit.getPluginManager().registerEvents(new OnClick(),this);
@@ -59,7 +59,7 @@ public final class CombatUtils extends JavaPlugin {
                     });
                 }
             }
-        }.runTaskTimer(this,0,5);
+        }.runTaskTimer(this,0,3);
     }
 
     @Override

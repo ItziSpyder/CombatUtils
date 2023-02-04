@@ -83,6 +83,6 @@ public class CrystalAura extends Module {
                     super.getEventPlayer());
             ServerSound sound = new ServerSound(location, Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
             sound.playWithin(5000);
-        },4);
+        },3);
     }
 }

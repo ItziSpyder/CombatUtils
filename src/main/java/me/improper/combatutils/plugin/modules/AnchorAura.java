@@ -4,7 +4,7 @@ import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.entity.player.HotbarLoader;
-import me.improper.combatutils.geometry.shapes.Sphere;
+import me.improper.combatutils.geometry.shapes.Cube;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
@@ -47,9 +47,9 @@ public class AnchorAura extends Module {
         Hotbar hotbar = HotbarLoader.from(p);
         if (p == null) return;
         Location loc = p.getLocation();
-        Sphere sphere = new Sphere(loc,50);
+        Cube cube = new Cube(loc.clone().add(6,6,6),loc.clone().add(-6,-6,-6));
 
-        for (Block block : sphere.blockList()) {
+        for (Block block : cube.blockList()) {
             Location bLoc = block.getLocation();
             for (Entity entity : bLoc.getWorld().getNearbyEntities(bLoc,2,2,2)) {
                 if (entity instanceof LivingEntity && entity != p && !entity.isDead() && block.isEmpty() && hotbar.containsItem(Material.GLOWSTONE) && hotbar.containsItem(Material.RESPAWN_ANCHOR)) {
@@ -77,6 +77,6 @@ public class AnchorAura extends Module {
                     super.getEventPlayer());
             ServerSound sound = new ServerSound(block.getLocation(), Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
             sound.playWithin(5000);
-        },4);
+        },3);
     }
 }

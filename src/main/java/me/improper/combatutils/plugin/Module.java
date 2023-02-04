@@ -21,7 +21,7 @@ public abstract class Module implements Cloneable, IToggleable {
     }
 
     public String getModuleStatus() {
-        return CombatUtils.STARTER +
+        return CombatUtils.starter +
                 ChatColor.WHITE + this.name + " " +
                 ChatColor.GRAY + "set to " +
                 ChatColor.WHITE + this.enabled;
