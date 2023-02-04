@@ -33,6 +33,6 @@ public class OnProjectile implements Listener {
                     }
                 }
             }
-        } catch (Exception ex) {}
+        } catch (Exception ex) {  }
     }
 }
