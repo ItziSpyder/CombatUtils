@@ -23,6 +23,7 @@
 - No Fall
 - Criticals
 - AimBot
+- FastCrystal
 
 ![CombatUtils Commands](/assets/images/cucommands.png)
 
