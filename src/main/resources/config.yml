@@ -1,0 +1,22 @@
+#
+#
+# Looking for server-side hacks?
+# Introducing CombatUtils!
+#
+# Plugin Author: ImproperIssues
+# Idea Credits: ImproperIssues, obvWolf
+#
+#
+config:
+  plugin:
+    prefix: "§7[§4CombatUtils§7]"
+    custom-command-prefix-character: '>'
+    custom-command-requires-permission: true
+  gameplay:
+    explosion-block-damage: true
+    explosion-fire: true
+    fast-crystal-for-high-ping: true
+
+
+
+
