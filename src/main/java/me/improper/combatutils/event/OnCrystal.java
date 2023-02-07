@@ -1,7 +1,6 @@
 package me.improper.combatutils.event;
 
 import me.improper.combatutils.CombatUtils;
-import me.improper.combatutils.data.Config;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.entity.player.HotbarLoader;
 import me.improper.combatutils.plugin.Module;
@@ -33,19 +32,19 @@ public class OnCrystal implements Listener {
                 Module fastCrystal = profile.getModuleObject("FastCrystal");
                 if (crystal.getScoreboardTags().contains("§8combatutils:cw-crystal")) return;
                 if (!(p.getPing() >= getPingFastCrystalPing() && getPingFastCrystal()) && !fastCrystal.isEnabled()) return;
-                for (int i = 0; i < getPingFastCrystalAmount(); i++) {
-                    if (!hotbar.containsItem(Material.END_CRYSTAL)) continue;
-                    hotbar.deductItem(Material.END_CRYSTAL,false);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
-                        Location spawnLoc = crystal.getLocation().clone();
-                        EnderCrystal newCrystal = p.getWorld().spawn(spawnLoc, EnderCrystal.class);
-                        newCrystal.setShowingBottom(false);
-                        newCrystal.addScoreboardTag("§8combatutils:cw-crystal");
-                        detonateCrystal(newCrystal, p);
-                    }, getPingFastCrystalDelay());
-                }
+                if (!hotbar.containsItem(Material.END_CRYSTAL)) return;
+                hotbar.deductItem(Material.END_CRYSTAL, false);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(), () -> {
+                    Location spawnLoc = crystal.getLocation().clone();
+                    EnderCrystal newCrystal = p.getWorld().spawn(spawnLoc, EnderCrystal.class);
+                    newCrystal.setShowingBottom(false);
+                    newCrystal.addScoreboardTag("§8combatutils:cw-crystal");
+                    detonateCrystal(newCrystal, p);
+                }, getPingFastCrystalDelay());
             }
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            //real
+        }
     }
 
     private static void detonateCrystal(EnderCrystal crystal, HumanEntity entity) {
