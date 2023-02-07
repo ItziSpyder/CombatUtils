@@ -40,7 +40,7 @@ public class OnCrystal implements Listener {
                     newCrystal.setShowingBottom(false);
                     newCrystal.addScoreboardTag("§8combatutils:cw-crystal");
                     detonateCrystal(newCrystal, p);
-                }, getPingFastCrystalDelay())
+                }, getPingFastCrystalDelay());
             }
         } catch (Exception ex) {
             //real
