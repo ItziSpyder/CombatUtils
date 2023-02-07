@@ -30,13 +30,13 @@ public abstract class Config {
             return CONFIG.getBoolean("config.gameplay.fast-crystal-for-high-ping");
         }
         public static int getPingFastCrystalPing() {
-            return CONFIG.getInt("config.gameplay.fast-crystal-for-high-ping-amount", 200);
+            return CONFIG.getInt("config.gameplay.fast-crystal-for-high-ping-ping", 200);
         }
         public static int getPingFastCrystalAmount() {
             return CONFIG.getInt("config.gameplay.fast-crystal-for-high-ping-amount", 1);
         }
         public static int getPingFastCrystalDelay() {
-            return CONFIG.getInt("config.gameplay.fast-crystal-for-high-ping-amount", 3);
+            return CONFIG.getInt("config.gameplay.fast-crystal-for-high-ping-delay", 3);
         }
     }
 }
