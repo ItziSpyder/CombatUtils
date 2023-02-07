@@ -16,6 +16,9 @@ config:
     explosion-block-damage: true
     explosion-fire: true
     fast-crystal-for-high-ping: true
+    fast-crystal-for-high-ping-ping: 200
+    fast-crystal-for-high-ping-amount: 2
+    fast-crystal-for-high-ping-delay: 3
 
 
 
