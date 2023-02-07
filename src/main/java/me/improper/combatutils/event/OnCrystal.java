@@ -18,6 +18,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import static me.improper.combatutils.data.Config.Gameplay.*;
+
 public class OnCrystal implements Listener {
 
     @EventHandler
@@ -30,16 +32,18 @@ public class OnCrystal implements Listener {
                 Profile profile = ProfileLoader.loadProfile(p);
                 Module fastCrystal = profile.getModuleObject("FastCrystal");
                 if (crystal.getScoreboardTags().contains("§8combatutils:cw-crystal")) return;
-                if (!hotbar.containsItem(Material.END_CRYSTAL)) return;
-                if (!(p.getPing() >= 150 && Config.Gameplay.getPingFastCrystal()) && !fastCrystal.isEnabled()) return;
-                hotbar.deductItem(Material.END_CRYSTAL,false);
-                Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
-                    Location spawnLoc = crystal.getLocation().clone();
-                    EnderCrystal newCrystal = p.getWorld().spawn(spawnLoc,EnderCrystal.class);
-                    newCrystal.setShowingBottom(false);
-                    newCrystal.addScoreboardTag("§8combatutils:cw-crystal");
-                    detonateCrystal(newCrystal,p);
-                },3);
+                if (!(p.getPing() >= getPingFastCrystalPing() && getPingFastCrystal()) && !fastCrystal.isEnabled()) return;
+                for (int i = 0; i < getPingFastCrystalAmount(); i++) {
+                    if (!hotbar.containsItem(Material.END_CRYSTAL)) continue;
+                    hotbar.deductItem(Material.END_CRYSTAL,false);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
+                        Location spawnLoc = crystal.getLocation().clone();
+                        EnderCrystal newCrystal = p.getWorld().spawn(spawnLoc, EnderCrystal.class);
+                        newCrystal.setShowingBottom(false);
+                        newCrystal.addScoreboardTag("§8combatutils:cw-crystal");
+                        detonateCrystal(newCrystal, p);
+                    }, getPingFastCrystalDelay());
+                }
             }
         } catch (Exception ex) {}
     }
