@@ -86,6 +86,7 @@ public class ModuleCommands implements ChatCommandExecutor {
                         }
                         case "revoke" -> {
                             profile.removePermission(CombatUtils.chatCmdPerm);
+                            profile.getModules().forEach(Module::onDisable);
                             sender.sendMessage(CombatUtils.starter + "§f" + p.getName() + " §7no longer has access to chat commands!");
                             p.sendMessage(CombatUtils.starter + "§7Your permission to use chat commands has been revoked!");
                         }
