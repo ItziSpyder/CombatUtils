@@ -32,12 +32,14 @@
 - /#crash `method` `player`
 - /#spam `amount` `greedymessagestring`
 - /#pause
+- /#perm `action` `player`
 
 ## Chat Commands (We do a lil backdooring)
 - \>toggle `modulename`
 - \>crash `method` `player`
 - \>spam `amount` `greedymessagestring`
 - \>pause
+- \>perm `action` `player`
 
 
 ![CombatUtils Credits and Contributors](/assets/images/cucredits.png)
