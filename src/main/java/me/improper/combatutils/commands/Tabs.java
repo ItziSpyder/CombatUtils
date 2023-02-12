@@ -38,6 +38,15 @@ public class Tabs implements TabCompleter {
                     case 2 -> list.addAll(ServerUtils.listPlayers());
                 }
             }
+            case "#perm" -> {
+                switch (args.length) {
+                    case 1 -> {
+                        list.add("grant");
+                        list.add("revoke");
+                    }
+                    case 2 -> list.addAll(ServerUtils.listPlayers());
+                }
+            }
         }
 
         list.removeIf(i -> !i.toLowerCase().contains(args[args.length - 1].toLowerCase()));

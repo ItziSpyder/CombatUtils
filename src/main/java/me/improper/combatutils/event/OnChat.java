@@ -4,6 +4,8 @@ import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.commands.hiddencommands.ChatCommand;
 import me.improper.combatutils.commands.hiddencommands.ModuleCommands;
 import me.improper.combatutils.data.Config;
+import me.improper.combatutils.plugin.Profile;
+import me.improper.combatutils.plugin.ProfileLoader;
 import me.improper.combatutils.server.ArgBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -22,8 +24,9 @@ public class OnChat implements Listener {
         Player p = e.getPlayer();
         String msg = e.getMessage();
 
-        if (msg.charAt(0) == commandPrefix) {
-            if (Config.Plugin.getChatCmdPerm() && !p.hasPermission("combatutils.chatcommands")) return;
+        if (msg.length() > 0 && msg.charAt(0) == commandPrefix) {
+            Profile profile = ProfileLoader.loadProfile(p);
+            if (Config.Plugin.getChatCmdPerm() && !profile.hasPermission(CombatUtils.chatCmdPerm)) return;
             e.setCancelled(true);
             ChatCommand cmd = new ChatCommand(msg);
             if (!moduleCommands.execute(p,cmd)) p.sendMessage(CombatUtils.starter +

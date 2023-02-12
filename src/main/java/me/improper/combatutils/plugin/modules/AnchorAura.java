@@ -71,7 +71,7 @@ public class AnchorAura extends Module {
     public void explode(Block block) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
             block.setType(Material.AIR);
-            block.getWorld().createExplosion(block.getLocation(),5,
+            block.getWorld().createExplosion(block.getLocation(),6,
                     Config.Gameplay.getExplosionFire(),
                     Config.Gameplay.getExplosionBlockDamage(),
                     super.getEventPlayer());

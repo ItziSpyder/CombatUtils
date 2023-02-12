@@ -1,25 +1,25 @@
 package me.improper.combatutils.plugin;
 
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Profile implements Serializable {
 
     private String name;
     private UUID uuid;
-    private List<Module> modules;
+    private Set<Module> modules;
     private boolean paused;
+    private Set<Permission> permissions;
 
     public Profile(Player player) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
-        this.modules = new ArrayList<>();
+        this.modules = new HashSet<>();
         this.paused = false;
+        this.permissions = new HashSet<>();
         for (Modules mods : Modules.values()) {
             Module module = mods.getModule().clone();
             module.setEventPlayer(player);
@@ -36,6 +36,23 @@ public class Profile implements Serializable {
         return null;
     }
 
+    public void addPermission(Permission perm) {
+        permissions.add(perm);
+    }
+
+    public void removePermission(Permission perm) {
+        permissions.remove(perm);
+    }
+
+    public boolean hasPermission(Permission perm) {
+        return permissions.contains(perm);
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+
     public void addModule(Module module) {
         this.modules.add(module);
     }
@@ -44,7 +61,7 @@ public class Profile implements Serializable {
         this.modules.remove(module);
     }
 
-    public List<Module> getModules() {
+    public Set<Module> getModules() {
         return modules;
     }
 
@@ -68,7 +85,7 @@ public class Profile implements Serializable {
         this.uuid = uuid;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
 

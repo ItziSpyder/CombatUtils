@@ -88,7 +88,7 @@ public class CrystalAura extends Module {
     public void explode(EnderCrystal crystal) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
             Location location = crystal.getLocation();
-            location.getWorld().createExplosion(location,5,false,
+            location.getWorld().createExplosion(location,6,false,
                     Config.Gameplay.getExplosionBlockDamage(),
                     super.getEventPlayer());
             ServerSound sound = new ServerSound(location, Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);

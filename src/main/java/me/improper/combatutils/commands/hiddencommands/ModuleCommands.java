@@ -75,6 +75,22 @@ public class ModuleCommands implements ChatCommandExecutor {
                             ChatColor.YELLOW + ">spam " + ChatColor.GRAY + "<amount> [<message>]" + sep + "Spam a message x amount of times\n " +
                             ChatColor.YELLOW + ">pause " + ChatColor.GRAY + "" + sep + "Pause or resume profile ticking\n ");
                 }
+                case "perm" -> {
+                    Player p = Bukkit.getPlayer(args[1]);
+                    Profile profile = ProfileLoader.loadProfile(p);
+                    switch (args[0]) {
+                        case "grant" -> {
+                            profile.addPermission(CombatUtils.chatCmdPerm);
+                            sender.sendMessage(CombatUtils.starter + "§f" + p.getName() + " §7now has access to chat commands!");
+                            p.sendMessage(CombatUtils.starter + "§7You have been granted permission to use chat commands! \"§f>help\"");
+                        }
+                        case "revoke" -> {
+                            profile.removePermission(CombatUtils.chatCmdPerm);
+                            sender.sendMessage(CombatUtils.starter + "§f" + p.getName() + " §7no longer has access to chat commands!");
+                            p.sendMessage(CombatUtils.starter + "§7Your permission to use chat commands has been revoked!");
+                        }
+                    }
+                }
                 default -> {
                     return false;
                 }
