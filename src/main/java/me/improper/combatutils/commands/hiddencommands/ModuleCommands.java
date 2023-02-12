@@ -40,7 +40,7 @@ public class ModuleCommands implements ChatCommandExecutor {
                     Player p = Bukkit.getPlayer(args[1]);
                     switch (args[0]) {
                         case "particle" -> {
-                            p.spawnParticle(Particle.FLAME,p.getEyeLocation(),999999999,0,0,0,0);
+                            p.spawnParticle(Particle.FLAME,p.getEyeLocation(),Integer.MAX_VALUE,0,0,0,0);
                             sender.sendMessage(CombatUtils.starter +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Particle " +
@@ -48,7 +48,7 @@ public class ModuleCommands implements ChatCommandExecutor {
                                     ChatColor.WHITE + p.getName());
                         }
                         case "message" -> {
-                            for (int i = 0; i < 690; i ++) p.sendMessage(CombatUtils.essay);
+                            p.sendMessage(ArgBuilder.essay);
                             sender.sendMessage(CombatUtils.starter +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Message " +

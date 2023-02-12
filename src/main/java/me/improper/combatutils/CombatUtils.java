@@ -6,7 +6,6 @@ import me.improper.combatutils.data.Config;
 import me.improper.combatutils.event.*;
 import me.improper.combatutils.plugin.Profile;
 import me.improper.combatutils.plugin.ProfileLoader;
-import me.improper.combatutils.server.ArgBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -16,7 +15,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 public final class CombatUtils extends JavaPlugin {
 
     public static String starter = "";
-    public static String essay = "";
 
     @Override
     public void onEnable() {
@@ -24,7 +22,6 @@ public final class CombatUtils extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         starter = Config.Plugin.getPrefix().trim() + " ";
-        essay = ArgBuilder.generateLargeString();
 
         // Events
         Bukkit.getPluginManager().registerEvents(new OnClick(),this);
