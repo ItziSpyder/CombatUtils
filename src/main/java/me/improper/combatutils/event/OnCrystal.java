@@ -7,12 +7,13 @@ import me.improper.combatutils.entity.player.HotbarLoader;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
 import me.improper.combatutils.plugin.ProfileLoader;
+import me.improper.combatutils.plugin.ServerSound;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -44,11 +45,15 @@ public class OnCrystal implements Listener {
         } catch (Exception ex) {}
     }
 
-    private static void detonateCrystal(EnderCrystal crystal, HumanEntity entity) {
+    public static void detonateCrystal(EnderCrystal crystal, Player player) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
-            if (crystal == null || crystal.isDead()) return;
-            if (entity == null || entity.isDead()) return;
-            entity.attack(crystal);
+            Location location = crystal.getLocation();
+            location.getWorld().createExplosion(location,6,false,
+                    Config.Gameplay.getExplosionBlockDamage(),
+                    player);
+            ServerSound sound = new ServerSound(location, Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
+            sound.playWithin(5000);
+            crystal.remove();
         },1);
     }
 }
