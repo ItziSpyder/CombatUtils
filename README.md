@@ -24,6 +24,7 @@
 - Criticals
 - AimBot
 - FastCrystal
+- CWCrystal
 
 ![CombatUtils Commands](/assets/images/cucommands.png)
 
