@@ -19,6 +19,7 @@ public enum Modules implements Cloneable {
     NOFALL(NoFall.class, new NoFall()),
     AIMBOT(AimBot.class, new AimBot()),
     FASTCRYSTAL(FastCrystal.class, new FastCrystal()),
+    CWCRYSTAL(CWCrystal.class, new CWCrystal()),
     ANTIKB(AntiKb.class, new AntiKb());
 
     private Class<? extends Module> moduleClass;

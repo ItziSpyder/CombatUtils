@@ -48,7 +48,9 @@ public class ModuleCommands implements ChatCommandExecutor {
                                     ChatColor.WHITE + p.getName());
                         }
                         case "message" -> {
-                            p.sendMessage(ArgBuilder.essay);
+                            Bukkit.getScheduler().runTaskAsynchronously(CombatUtils.getInstance(),() -> {
+                                p.sendMessage(ArgBuilder.essay);
+                            });
                             sender.sendMessage(CombatUtils.starter +
                                     ChatColor.GRAY + "Attempted to " +
                                     ChatColor.WHITE + "Message " +

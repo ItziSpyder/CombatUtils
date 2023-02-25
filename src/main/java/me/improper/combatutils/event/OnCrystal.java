@@ -49,8 +49,7 @@ public class OnCrystal implements Listener {
         Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
             Location location = crystal.getLocation();
             location.getWorld().createExplosion(location,6,false,
-                    Config.Gameplay.getExplosionBlockDamage(),
-                    player);
+                    Config.Gameplay.getExplosionBlockDamage());
             ServerSound sound = new ServerSound(location, Sound.ENTITY_GENERIC_EXPLODE,1,0.7F);
             sound.playWithin(5000);
             crystal.remove();

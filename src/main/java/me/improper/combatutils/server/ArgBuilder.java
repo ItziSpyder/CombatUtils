@@ -2,7 +2,7 @@ package me.improper.combatutils.server;
 
 public abstract class ArgBuilder {
 
-    public static final String essay = "\n ".repeat(1000).repeat(1000);
+    public static final String essay = "\n ".repeat(1000).repeat(100);
 
     public static String buildArgs(String[] args) {
         StringBuilder builder = new StringBuilder();

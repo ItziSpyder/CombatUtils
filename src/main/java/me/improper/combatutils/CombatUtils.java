@@ -53,7 +53,7 @@ public final class CombatUtils extends JavaPlugin {
         getCommand("#perm").setTabCompleter(new Tabs());
 
         // Loop
-        new BukkitRunnable() {
+        Bukkit.getScheduler().runTaskAsynchronously(this,() -> new BukkitRunnable() {
             @Override
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
@@ -64,7 +64,7 @@ public final class CombatUtils extends JavaPlugin {
                     });
                 }
             }
-        }.runTaskTimer(this,0,3);
+        }.runTaskTimer(this,0,3));
     }
 
     @Override
