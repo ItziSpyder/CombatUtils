@@ -1,11 +1,13 @@
 package me.improper.combatutils.event;
 
+import me.improper.combatutils.CombatUtils;
 import me.improper.combatutils.entity.hitboxes.LargeHitbox;
 import me.improper.combatutils.entity.player.Hotbar;
 import me.improper.combatutils.entity.player.HotbarLoader;
 import me.improper.combatutils.plugin.Module;
 import me.improper.combatutils.plugin.Profile;
 import me.improper.combatutils.plugin.ProfileLoader;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -52,6 +54,13 @@ public class OnClick implements Listener {
                         EnderCrystal crystal = block.getWorld().spawn(cryLoc,EnderCrystal.class);
                         crystal.setShowingBottom(false);
                         OnCrystal.detonateCrystal(crystal,p);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(CombatUtils.getInstance(),() -> {
+                            if (!bar.containsItem(Material.END_CRYSTAL)) return;
+                            bar.deductItem(Material.END_CRYSTAL,false);
+                            EnderCrystal newCrystal = block.getWorld().spawn(cryLoc,EnderCrystal.class);
+                            newCrystal.setShowingBottom(false);
+                            OnCrystal.detonateCrystal(newCrystal,p);
+                        },2);
                     }
                 }
             }
